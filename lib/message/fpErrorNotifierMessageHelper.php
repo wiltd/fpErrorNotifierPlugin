@@ -75,7 +75,12 @@ class fpErrorNotifierMessageHelper
   {
     $env = sfConfig::get('sf_environment', 'undefined');
     
-    return "ERROR: {$_SERVER['HTTP_HOST']} - {$env} - {$title}";
+    if (isset($_SERVER['HTTP_HOST'])) {
+      return "ERROR: {$_SERVER['HTTP_HOST']} - {$env} - {$title}";
+    }
+    else {
+      return "ERROR: {$env} - {$title}";
+    }
   }
   
   /**
