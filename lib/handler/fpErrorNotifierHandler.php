@@ -84,11 +84,11 @@ class fpErrorNotifierHandler
   
   /**
    * 
-   * @param Exception $e
+   * @param $e
    * 
    * @return void
    */
-  public function handleException(Exception $e)
+  public function handleException($e)
   {
     $message = $this->notifier()->decoratedMessage($e->getMessage());
     $message->addSection('Exception', $this->notifier()->helper()->formatException($e));

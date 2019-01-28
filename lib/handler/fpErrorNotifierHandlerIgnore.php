@@ -44,11 +44,11 @@ class fpErrorNotifierHandlerIgnore extends fpErrorNotifierHandler
   
   /**
    * 
-   * @param Exception $e
+   * @param $e
    * 
    * @return void
    */
-  public function handleException(Exception $e)
+  public function handleException($e)
   {
     if ($this->ignoreException($e) || $this->ignoreError($e) || $this->ignoreDuplication($e)) return;
 
@@ -57,7 +57,7 @@ class fpErrorNotifierHandlerIgnore extends fpErrorNotifierHandler
     parent::handleException($e);
   }
   
-  protected function ignoreException(Exception $e)
+  protected function ignoreException($e)
   {    
     foreach ($this->options['ignore_exceptions'] as $ignoreClass) {
       if ($e instanceof $ignoreClass) {
@@ -69,7 +69,7 @@ class fpErrorNotifierHandlerIgnore extends fpErrorNotifierHandler
     return false;
   }
   
-  protected function ignoreError(Exception $e)
+  protected function ignoreError($e)
   {
     $code = $e->getCode();
     if (empty($code) && $e instanceof ErrorException) {
@@ -86,11 +86,11 @@ class fpErrorNotifierHandlerIgnore extends fpErrorNotifierHandler
   
   /**
    *
-   * @param Exception $e
+   * @param $e
    * 
    * @return boolean
    */
-  protected function ignoreDuplication(Exception $e)
+  protected function ignoreDuplication($e)
   {
     if (false == $this->options['ignore_duplication']) return false;
     
@@ -105,11 +105,11 @@ class fpErrorNotifierHandlerIgnore extends fpErrorNotifierHandler
   
   /**
    *
-   * @param Exception $e 
+   * @param $e 
    * 
    * @return void
    */
-  protected function registerExceptionAsKnown(Exception $e)
+  protected function registerExceptionAsKnown($e)
   {
     if ($this->options['ignore_duplication']) {
       $key = md5($e->getMessage().$e->getFile().$e->getLine());
@@ -129,7 +129,7 @@ class fpErrorNotifierHandlerIgnore extends fpErrorNotifierHandler
     return new sfFileCache(array('cache_dir' => $cacheDir));
   }
   
-  protected function logIgnored(Exception $e)
+  protected function logIgnored($e)
   {
     if (!$this->options['log_ignored']) return;
     

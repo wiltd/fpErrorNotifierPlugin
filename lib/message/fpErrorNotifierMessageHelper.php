@@ -11,11 +11,11 @@ class fpErrorNotifierMessageHelper
 {
   /**
    * 
-   * @param Exception $e
+   * @param $e
    * 
    * @return array
    */
-  public function formatException(Exception $e)
+  public function formatException($e)
   {
     return array(
       'class' => $e instanceof ErrorException ? 
